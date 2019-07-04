@@ -1,0 +1,36 @@
+﻿body {
+    background-image: url(' https://i.pinimg.com/originals/55/d1/59/55d159bbbe77e492eece88945418e323.jpg ');
+    background-color: dimgray;
+    background-size: cover;
+}
+
+table {
+    width: 100%;
+}
+
+thead, tbody, tr, td, th { display: block; }
+
+tr:after {
+    content: ' ';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+thead th {
+    height: 30px;
+    /*text-align: left;*/
+}
+
+tbody {
+    height: 400px;
+    overflow-y: auto;
+}
+
+
+
+
+tbody td, thead th {
+    width: 19.2%;
+    float: left;
+}
