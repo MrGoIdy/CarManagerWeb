@@ -8,18 +8,17 @@ using System.Web;
 namespace CarManagerWeb.Models.DataBase
 {
     public class MySqlExecuter
-    {
-       
+    {      
         public static MySqlDataSetResult SelectData(string sql, string connection)
         {
             MySqlDataSetResult sqlResult = new MySqlDataSetResult();
             try
             {
-                MySqlConnection sqlConnection = new MySqlConnection(connection);
-                MySqlCommand sqlCommand = new MySqlCommand(sql, sqlConnection);
-                sqlConnection.Open();
+                MySqlConnection sqlConnection = OpenConnection(connection);
+               
                 try
                 {
+                    MySqlCommand sqlCommand = new MySqlCommand(sql, sqlConnection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter();
                     adapter.SelectCommand = sqlCommand;
                     DataSet dataSet = new DataSet();
@@ -40,6 +39,13 @@ namespace CarManagerWeb.Models.DataBase
             }
             return sqlResult;
 
+        }
+
+        public static MySqlConnection OpenConnection(string connection)
+        {
+            MySqlConnection sqlConnection = new MySqlConnection(connection);
+            sqlConnection.Open();
+            return sqlConnection;
         }
     }
 }
