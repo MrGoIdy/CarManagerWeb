@@ -12,7 +12,7 @@ namespace CarManagerWeb.Models
         public static List<Brand> GetAllBrands()
         {
             List<Brand> cars = new List<Brand>();
-            var carBrandsSqlResult = MySqlExecuter.SelectData("SELECT Id, Name FROM car_brands", MySqlRouter.GetConnectionString());
+            var carBrandsSqlResult = MySqlExecuter.SelectData("SELECT Id, Name FROM car_brands WHERE Name<>''", MySqlRouter.GetConnectionString());
             if (carBrandsSqlResult.HasError)
             {
                 throw new Exception(carBrandsSqlResult.ErrorText);
@@ -32,7 +32,7 @@ namespace CarManagerWeb.Models
         public static List<string> GetModels(int brandId)
         {
             List<string> models = new List<string>();
-            var carBrandsSqlResult = MySqlExecuter.SelectData($"SELECT Name FROM car_models WHERE Brand_Id='{brandId}'", MySqlRouter.GetConnectionString());
+            var carBrandsSqlResult = MySqlExecuter.SelectData($"SELECT Name FROM car_models WHERE Brand_Id='{brandId}' AND Name<>''", MySqlRouter.GetConnectionString());
             if (carBrandsSqlResult.HasError)
             {
                 throw new Exception(carBrandsSqlResult.ErrorText);
